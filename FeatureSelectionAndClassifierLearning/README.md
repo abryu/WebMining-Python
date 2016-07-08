@@ -37,5 +37,4 @@ lessons and problems won't impact your marks negatively but positively.
 
 ### 4) The presentation slides should be readable to audiences with proper fonts.
 
-## 5. Report and presentation should be printed out and submitted to me before the due day
-class. 
+## 5. Report and presentation should be printed out and submitted to me before the due day class. 
