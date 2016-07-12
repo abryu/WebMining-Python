@@ -36,12 +36,20 @@ def uniquelyAppear(l1,l2):
     s2 = set([(eachTuple[0]) for eachTuple in l2])
     return s1-s2
     
-def writeUnique(filename,uList):
+def writeUnique(filename,uList,resultDic):
     fileN = open(filename,'w')
     fileN.write('<!DOCTYPE html><html><body><table>\
-    <tr><th>Word</th></tr>')
+    <tr><th>Word</th><th>Frequency</th></tr>')
+    listHolder = {}
     for word in uList:
-        fileN.write("<tr><td>"+word+"</td></tr>")
+        freq = resultDic.get(word)
+        listHolder[word] = freq
+
+    resultL= sorted(listHolder.iteritems(), key=lambda frequency:frequency[1], reverse = True)
+
+    for key,value in resultL:
+        fileN.write("<tr><td>"+key+"</td><td>"+str(value)+"</td></tr>")
+        
     fileN.write('</table></body></html>')
     fileN.close()
     return uList
@@ -51,16 +59,13 @@ def writeResultToFile(resultDict, destFile, intersectionSet):
     interWords = intersectionSet
     resultDict.pop("comput", None)
     resultDict.pop("scienc", None)
-    
-    print (len(interWords))
-    
+        
     for wordKey in resultDict.keys():
         if resultDict.get(wordKey) <= 3:
             resultDict.pop(wordKey,None)
             
     if len(interWords) != 0:
         for word in interWords:
-            print (word)
             resultDict.pop(word,None)
             
         resultList= sorted(resultDict.iteritems(), key=lambda frequency:frequency[1], reverse = True) # sort the dict based on the value (frequency)
@@ -166,9 +171,9 @@ uC = uniquelyAppear(dC,dF) & uniquelyAppear(dC,dS)
 uF = uniquelyAppear(dF,dC) & uniquelyAppear(dF,dS)
 uS = uniquelyAppear(dS,dC) & uniquelyAppear(dS,dF)
 
-writeUnique("uC.html",uC)
-writeUnique("uF.html",uF)
-writeUnique("uS.html",uS)
+writeUnique("uC.html",uC,storingTrainingSetForCourse)
+writeUnique("uF.html",uF,storingTrainingSetForFaculty)
+writeUnique("uS.html",uS,storingTrainingSetForStudent)
 
 f4Course.write('</table></body></html>') # End of the file, write the close tags
 f4Course.close()
