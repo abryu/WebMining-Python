@@ -40,7 +40,7 @@ o Review the key parts of your code
 ### 3) Any lessons you have learned and deemed valuable. Note: Discussion on
 lessons and problems won't impact your marks negatively but positively.
 
-### 4) The presentation slides should be readable to audiences with proper fonts.
+### 4) The presentation slides should be readable to audiences with proper <font></font>s.
 
 ## 5. Report and presentation should be printed out and submitted to me before the due day class. 
 
@@ -48,8 +48,13 @@ lessons and problems won't impact your marks negatively but positively.
 
 #### 1. Review the result of first stage and keep refining it.
 
-#### 2. Update v1.py to generate a dictionary. In the dictionary, the key is number and the value is a list. (word,frequency)
+#### 2. Update v1.py. Display the words with frequency in each directory (course,falculty,student). Analyze the result files. Find the top common words. Remove those words (e.g. comput,page) in the result dictionary.
 
+#### 3. Get the intersection of two or three result dictionaries. Analyze and remove words.
+
+#### 4. Get the unique words that appear in each folder.
+
+#### 5. Remove words that appear less than 3 times.
 
 ### Notes:
 Python is ideal for text classification, because of it's strong string class with powerful methods. Furthermore the regular expression module re of Python provides the user with tools, which are way beyond other programming languages. 
