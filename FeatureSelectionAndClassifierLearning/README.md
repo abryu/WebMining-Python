@@ -1,5 +1,10 @@
 # Project stage 2 report and presentation requirements:
 
+Implement a learning algorithm to classify test documents with the
+vocabulary selected in stage 1. Your report and presentation (20 minutes) should include
+learning programs developed and classification performance. You should use all possible
+techniques learnt in this course to achieve the best performance you can. 
+
 ## 1. Report should be formally organized, formatted, and written without spelling errors.
 
 Report should clearly describe the problem you address, and particularly how you
