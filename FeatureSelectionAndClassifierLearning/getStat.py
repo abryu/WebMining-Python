@@ -29,9 +29,9 @@ prob4TrainStudent = float(directoryInfo.get("train/student"))/float(total4Train)
 prob4TrainCourse = float(directoryInfo.get("train/course"))/float(total4Train)
 prob4TrainFaculty = float(directoryInfo.get("train/faculty"))/float(total4Train)
 
-# prob4TestStudent = int(directoryInfo.get("test/student"))/total4Test
-# prob4TestCourse = int(directoryInfo.get("test/course"))/total4Test
-# prob4TestFaculty = int(directoryInfo.get("test/faculty"))/total4Test
+prob4TestStudent = float(directoryInfo.get("test/student"))/float(total4Test)
+prob4TestCourse = float(directoryInfo.get("test/course"))/float(total4Test)
+prob4TestFaculty = float(directoryInfo.get("test/faculty"))/float(total4Test)
 
 print (total4Test)
 print (total4Train)
