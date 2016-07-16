@@ -227,7 +227,7 @@ def calculateProbabilities(resultList):
             #print eachTuple[0] + "  Course"
             #print resultDic.get("course")
             #print (round(wordWithProb4TrainCourse.get(eachTuple[0]),5))
-            resultDic["course"] = resultDic.get("course") * round(wordWithProb4TrainCourse.get(eachTuple[0])/probInfo.get("course"),5)
+            resultDic["course"] = resultDic.get("course") * round(wordWithProb4TrainCourse.get(eachTuple[0]),5)
         else:
             resultDic["course"] = resultDic.get("course") * (0.01)
     for eachTuple in wordList:  
@@ -235,7 +235,7 @@ def calculateProbabilities(resultList):
             #print eachTuple[0] + "  Student"
             #print resultDic.get("student")
             #print (round(wordWithProb4TrainStudent.get(eachTuple[0]),5))
-            resultDic["student"] = resultDic.get("student") * round(wordWithProb4TrainStudent.get(eachTuple[0])/probInfo.get("student"),5)
+            resultDic["student"] = resultDic.get("student") * round(wordWithProb4TrainStudent.get(eachTuple[0]),5)
         else:
             resultDic["student"] = resultDic.get("student") * 0.01          
     for eachTuple in wordList:
@@ -243,7 +243,7 @@ def calculateProbabilities(resultList):
             #print eachTuple[0] + "  Faculty"  
             #print resultDic.get("faculty")   
             #print (round(wordWithProb4TrainFaculty.get(eachTuple[0]),5))    
-            resultDic["faculty"] = resultDic.get("faculty") * round(wordWithProb4TrainFaculty.get(eachTuple[0])/probInfo.get("faculty"),5)
+            resultDic["faculty"] = resultDic.get("faculty") * round(wordWithProb4TrainFaculty.get(eachTuple[0]),5)
         else:
             resultDic["faculty"] = resultDic.get("faculty") * 0.01
     theResult =  max(resultDic.iteritems(), key=operator.itemgetter(1))[0]
@@ -304,7 +304,17 @@ def getStatisticsAndTestAccuraty(resultToBeTested):
 getStatisticsAndTestAccuraty(statResultDic)
 
 ###########################################################################################
+# Entropy
 
+import math,nltk
+def entropy(labels):
+    freqdist = nltk.FreqDist(labels)
+    probs = [freqdist.freq(l) for l in freqdist]
+    return -sum(p * math.log(p,2) for p in probs)
+
+print(entropy(['male', 'male', 'male', 'male'])) 
+
+print(entropy(['male', 'female', 'male', 'male']))
 
 
 
@@ -312,7 +322,74 @@ getStatisticsAndTestAccuraty(statResultDic)
 ###################################################################################
 ########
 
+# For NLTK
 
+tweets = [(['love', 'this', 'car'], 'positive'),
+    (['this', 'view', 'amazing'], 'positive'),
+    (['feel', 'great', 'this', 'morning'], 'positive'),
+    (['excited', 'about', 'the', 'concert'], 'positive'),
+    (['best', 'friend'], 'positive'),
+    (['not', 'like', 'this', 'car'], 'negative'),
+    (['this', 'view', 'horrible'], 'negative'),
+    (['feel', 'tired', 'this', 'morning'], 'negative'),
+    (['not', 'looking', 'forward', 'the', 'concert'], 'negative'),
+    (['enemy'], 'negative')]
+
+test_tweets = [(['feel', 'happy', 'this', 'morning'], 'positive'),
+    (['larry', 'friend'], 'positive'),
+    (['not', 'like', 'that', 'man'], 'negative'),
+    (['house', 'not', 'great'], 'negative'),
+    (['your', 'song', 'annoying'], 'negative')]
+
+
+
+def get_words_in_tweets(tweets):
+
+    all_words = []
+
+    for (words, sentiment) in tweets:
+
+      all_words.extend(words)
+
+    return all_words
+
+def get_word_features(wordlist):
+
+    wordlist = nltk.FreqDist(wordlist)
+
+    word_features = wordlist.keys()
+
+    return word_features
+
+word_features = get_word_features(get_words_in_tweets(tweets))
+
+#print word_features
+
+def extract_features(document):
+
+    document_words = set(document)
+
+    features = {}
+
+    for word in word_features:
+
+        features['contains(%s)' % word] = (word in document_words)
+
+    return features
+
+#print extract_features(["love", "this", "car"])
+
+training_set = nltk.classify.apply_features(extract_features, tweets)
+
+print training_set
+
+classifier = nltk.NaiveBayesClassifier.train(training_set)
+
+print classifier.show_most_informative_features(32)
+
+tweet = 'Larry not concert is my morning'
+
+print classifier.classify(extract_features(tweet.split()))
 
 
 

@@ -44,6 +44,12 @@ lessons and problems won't impact your marks negatively but positively.
 
 ## 5. Report and presentation should be printed out and submitted to me before the due day class. 
 
+## References:
+
+Naive Bayesian Classification: 
+http://www.cnblogs.com/leoo2sk/archive/2010/09/17/naive-bayesian-classifier.html
+http://stackoverflow.com/questions/10059594/a-simple-explanation-of-naive-bayes-classification
+
 ### Steps:
 
 #### 1. Review the result of first stage and keep refining it.
