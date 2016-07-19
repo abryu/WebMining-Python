@@ -50,17 +50,12 @@ Naive Bayesian Classification:
 http://www.cnblogs.com/leoo2sk/archive/2010/09/17/naive-bayesian-classifier.html
 http://stackoverflow.com/questions/10059594/a-simple-explanation-of-naive-bayes-classification
 
-### Steps:
+### How to use:
 
-#### 1. Review the result of first stage and keep refining it.
-
-#### 2. Update v1.py. Display the words with frequency in each directory (course,falculty,student). Analyze the result files. Find the top common words. Remove those words (e.g. comput,page) in the result dictionary.
-
-#### 3. Get the intersection of two or three result dictionaries. Analyze and remove words.
-
-#### 4. Get the unique words that appear in each folder.
-
-#### 5. Remove words that appear less than 3 times.
+Download and install the required python files.
+Open your terminal, navigate to this folder.
+In your command line, type "python naiveBayes.py 20 10". 
+The last two number are the number of top most frequent words (for train and test, respectively) you wanna use to classify documents.
 
 ### Notes:
 Python is ideal for text classification, because of it's strong string class with powerful methods. Furthermore the regular expression module re of Python provides the user with tools, which are way beyond other programming languages. 
