@@ -104,8 +104,8 @@ def calculateAndClassify(toBeProcessed,filename):
             resultDic["faculty"] = resultDic.get("faculty") * wordWithProb4TrainFaculty.get(eachTuple[0])/prob4TrainCourse
         else:
             resultDic["faculty"] = resultDic.get("faculty") * 0.01
-    for key,value in resultDic.iteritems():
-        print key,value
+    #for key,value in resultDic.iteritems():
+    #    print key,value
     theResult =  max(resultDic.iteritems(), key=operator.itemgetter(1))[0]
     if theResult == "student":
         holder4Student.append(filename)
@@ -128,8 +128,8 @@ loopAndProcessDocuments('/test/student')
 
 ###################################################################################################
 
-# 5. Format the result
-def formatResult():
+# 5. Format and displaythe result
+def formatAndDisplayResult():
     # Predicted statistics
     predTotal = len(holder4Student) + len(holder4Course) + len(holder4Faculty)
     predProb4Student = float(len(holder4Student)) / float(predTotal)
@@ -144,4 +144,26 @@ def formatResult():
     print "The actuall percentages of test sets for student, course and faculty are " + str(prob4TestStudent)+ " , " + str(prob4TestCourse) + " , " + str(prob4TestFaculty) + " respectively."
     print "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
-formatResult()
+#formatAndDisplayResult()
+
+###################################################################################################
+
+# 6. Test accuracy and display accuracy score.
+def testAccuracy(testSetPath,listToBeTested):
+    nameHolder = set()
+    for filename in os.listdir(os.getcwd()+testSetPath):
+        nameHolder.add(filename)
+    holder4Test = set(listToBeTested)
+    # Formula : accuracy = number of correct classifed documents / total # of documents
+    return float(len(holder4Test&nameHolder)) / float(len(nameHolder))
+
+def displayAccuray(studentScore,courseScore,facultyScore):
+    print "************************************************************************************************"
+    print "Given the top most " + str(numberOfTopMostFrequentWordTrain) + " , " + str(numberOfTopMostFrequentWordTrain) + " frequent words in train and test sets"
+    print "The accuracy for classified student documents is " + str(studentScore)
+    print "The accuracy for classified course documents is " + str(courseScore)
+    print "The accuracy for classified faculty documents is " + str(facultyScore)
+    print "The average accuracy is " + str(float(sum([studentScore,courseScore,facultyScore])/3))
+    print "************************************************************************************************"
+
+displayAccuray(testAccuracy('/test/student',holder4Student),testAccuracy('/test/course',holder4Course),testAccuracy('/test/faculty',holder4Faculty))
