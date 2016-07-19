@@ -56,6 +56,6 @@ Download and install the required python files.
 Open your terminal, navigate to this folder.
 In your command line, type "python naiveBayes.py 20 10". 
 The last two number are the number of top most frequent words (for train and test, respectively) you wanna use to classify documents.
-
+Or, you can "sh nbshell.py" to test with different top most frequent numbers.
 ### Notes:
 Python is ideal for text classification, because of it's strong string class with powerful methods. Furthermore the regular expression module re of Python provides the user with tools, which are way beyond other programming languages. 

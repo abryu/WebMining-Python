@@ -159,7 +159,7 @@ def testAccuracy(testSetPath,listToBeTested):
 
 def displayAccuray(studentScore,courseScore,facultyScore):
     print "************************************************************************************************"
-    print "Given the top most " + str(numberOfTopMostFrequentWordTrain) + " , " + str(numberOfTopMostFrequentWordTrain) + " frequent words in train and test sets"
+    print "Given the top most " + str(numberOfTopMostFrequentWordTrain) + " , " + str(numberOfTopMostFrequentWordTest) + " frequent words in train and test sets"
     print "The accuracy for classified student documents is " + str(studentScore)
     print "The accuracy for classified course documents is " + str(courseScore)
     print "The accuracy for classified faculty documents is " + str(facultyScore)
