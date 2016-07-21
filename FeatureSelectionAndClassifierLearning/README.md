@@ -44,6 +44,14 @@ lessons and problems won't impact your marks negatively but positively.
 
 ## 5. Report and presentation should be printed out and submitted to me before the due day class. 
 
+### Files usage:
+
+* Train: provided train sets, with label of student, faculty and course
+* Test: provided test sets. Documents are in different directories. i.e. student, faculty and course
+* naiveBayes.py: the main program, complete the probability calculation and document classification.
+* documentsProcessing.py: methods for documents processing and tokenizing.
+* nbshell.sh: shell script for automating the running of naiveBayes.py with different parameters or arguments.
+
 ### Performance:
 * If the selected top most frequent words for a train set and a single documents in test set are 300 and 50, the accuracy is 0.686984737077
 * If the selected top most frequent words for a train set and a single documents in test set are 300 and 20, the accuracy is 0.710603275401
@@ -79,7 +87,7 @@ Download and install the required python programs.
 Open your terminal, navigate to this folder.
 In your command line, type "python naiveBayes.py 100 10". 
 The last two number are the number of top most frequent words (for train and test, respectively) you wanna use to classify documents.
-Or, you can "sh nbshell.py" to test with different top most frequent numbers.
+Or, you can "sh nbshell.sh" to test with different top most frequent numbers.
 
 ## Tools Used:
 ### Language: Python.
@@ -112,7 +120,7 @@ Or, you can "sh nbshell.py" to test with different top most frequent numbers.
 * documentsProcessing.py is used for tokenzing, pre-processing documents.
 * part of its code was developed at stage 1.
 * import methods for tokenizing and processing documents
-* good for code reliability and maintenance
+* good for code reusability and maintenance
 
 ### nltk
 
