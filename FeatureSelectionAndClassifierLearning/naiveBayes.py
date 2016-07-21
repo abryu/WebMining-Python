@@ -158,12 +158,33 @@ def testAccuracy(testSetPath,listToBeTested):
     return float(len(holder4Test&nameHolder)) / float(len(nameHolder))
 
 def displayAccuray(studentScore,courseScore,facultyScore):
-    print "************************************************************************************************"
+    print "--------------------------------------NEW-------------------------------------------------------"
     print "Given the top most " + str(numberOfTopMostFrequentWordTrain) + " , " + str(numberOfTopMostFrequentWordTest) + " frequent words in train and test sets"
     print "The accuracy for classified student documents is " + str(studentScore)
     print "The accuracy for classified course documents is " + str(courseScore)
     print "The accuracy for classified faculty documents is " + str(facultyScore)
     print "The average accuracy is " + str(float(sum([studentScore,courseScore,facultyScore])/3))
-    print "************************************************************************************************"
+    print " "
 
 displayAccuray(testAccuracy('/test/student',holder4Student),testAccuracy('/test/course',holder4Course),testAccuracy('/test/faculty',holder4Faculty))
+
+def displayPrecisionAndRecall(testSetPath,listToBeTested):
+    nameHolder = set()
+    for filename in os.listdir(os.getcwd()+testSetPath):
+        nameHolder.add(filename)
+    holder4Test = set(listToBeTested)
+    # Formula : precision = number of correct classifed documents / total # of classified documents
+    precision = float(len(holder4Test&nameHolder)) / float(len(listToBeTested))
+
+    # Recall = correctly classified postive / total of actual positive
+    recall = float(len(holder4Test&nameHolder)) / float(len(nameHolder))
+
+    return precision,recall
+
+print "The precision and recall for student test set are " + str(displayPrecisionAndRecall('/test/student',holder4Student)) + "respectively."
+print "The precision and recall for course test set are " + str(displayPrecisionAndRecall('/test/course',holder4Course)) + "respectively."
+print "The precision and recall for faculty test set are " + str(displayPrecisionAndRecall('/test/faculty',holder4Faculty)) + "respectively."
+print "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~END~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+###################################################################################################
+
+
